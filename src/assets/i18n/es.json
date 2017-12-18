@@ -6,33 +6,6 @@
         "pwd_match": "Las contraseñas no coinciden",
         "required": "Campo obligatorio"
     },
-    "settings": {
-        "button": "Guardar Cambios",
-        "appearance": {
-            "section": "Apariencia",
-            "title": "Cambia el tema actual",
-            "description": "Elige entre tema oscuro o claro"
-        },
-        "language": {
-            "title": "Cambia el idioma de la aplicación",
-            "description": "Selecciona idioma",
-            "input": "Idioma"
-        },
-        "other": "Otros"
-    },
-    "title": {
-        "app": "NgGallery",
-        "detail": "Imagen",
-        "favorites": "Favoritas",
-        "gallery": "Galería",
-        "home": "Inicio",
-        "login": "Inicia Sesión",
-        "profile": "Tu Perfil",
-        "settings": "Ajustes",
-        "signup": "Regístrate",
-        "upload": "Subir imagen",
-        "reset_password": "Resetear Contraseña"
-    },
     "toast": {
         "settings_saved": "Ajustes guardados",
         "image": {
@@ -46,23 +19,15 @@
         "profile": "Tu perfil ha sido actualizado",
         "reset_pwd": "Email enviado, revisa tu correo",
         "signup": "Registrado correctamente, iniciando sesión",
-        "serverResponse": {
+        "firebase": {
             "auth/wrong-password": "La contraseña no es válida o el usuario no existe",
             "auth/weak-password": "La contraseña debe ser de al menos 6 caracteres",
             "auth/email-already-in-use": "El email ya lo usa otro usuario.",
             "auth/requires-recent-login": "Esta operación es sensible y requiere que te re-autentiques. Inicia sesión nuevamente",
-            "auth/user-not-found": "Las credenciales no corresponde a ningún usuario. El usuario no existe o fue eliminado.",
-            "invalid_credentials": "Usuario y/o Contraseña Incorrectas",
-            "could_not_create_token": "No se puede iniciar sesión ahora, inténtalo mas tarde",
-            "user_not_found": "Usuario no existe, por favor, regístrate",
-            "default": "Error en el Servidor, si el problema persiste contacte con el servicio de NgGallery",
-            "not_authorized": "Acceso no autorizado!",
-            "reset_pwd_token": "Este token de recuperación de contraseña es inválido.",
-            "reset_pwd_user": "No podemos encontrar a un usuario con ese correo electrónico.",
-            "reset_pwd_ok": "Contraseña reestablecida!",
-            "wrong_captcha": "Captcha incorrecto",
-            "email_exists": "El Email ya está en uso",
-            "error_updating_profile": "Error al actualizar tu perfil",
+            "auth/user-not-found": "Las credenciales no corresponden a ningún usuario. El usuario no existe o fue eliminado.",
+            "auth/operation-not-allowed": "Operación no autorizada"
+        },
+        "server": {
             "access_denied": "Acceso denegado"
         },
         "auth": {
@@ -89,22 +54,49 @@
             "upload": "Subir"
         }
     },
-    "main": {
-        "sortBy": {
+    "title": {
+        "app": "Ng5fireGallery",
+        "detail": "Imagen",
+        "favorites": "Favoritas",
+        "gallery": "Galería",
+        "home": "Inicio",
+        "login": "Inicia Sesión",
+        "profile": "Tu Perfil",
+        "settings": "Ajustes",
+        "signup": "Regístrate",
+        "upload": "Subir imagen",
+        "reset_password": "Resetear Contraseña"
+    },
+    "navbar": {
+        "sort-by": {
             "date": "Fecha",
             "name": "Nombre"
         },
-        "search": "Buscar...",
-        "sidenav": {
-            "favorites": "Favoritas",
-            "gallery": "Galería",
-            "home": "Inicio",
-            "login": "Inicia Sesión",
-            "logout": "Desconexión",
-            "settings": "Ajustes",
-            "signup": "Regístrate",
-            "upload": "Subir imágenes"
-        }
+        "search": "Buscar..."
+    },
+    "sidenav": {
+        "favorites": "Favoritas",
+        "gallery": "Galería",
+        "home": "Inicio",
+        "login": "Inicia Sesión",
+        "logout": "Desconexión",
+        "settings": "Ajustes",
+        "signup": "Regístrate",
+        "upload": "Subir imágenes"
+    },
+    "settings": {
+        "button": "Guardar Cambios",
+        "appearance": {
+            "section": "Apariencia",
+            "title": "Cambia el tema actual",
+            "description": "Elige entre tema oscuro o claro"
+        },
+        "language": {
+            "title": "Cambia el idioma de la aplicación",
+            "description": "Selecciona idioma",
+            "input": "Idioma"
+        },
+        "other": "Otros"
     },
     "auth": {
         "login": {
@@ -113,19 +105,19 @@
             "register": "¿No tienes cuenta?",
             "title": "Hola Invitado, por favor, inicia sesión"
         },
-        "input": {
-            "email": "Correo electrónico",
-            "img_url": "URL de imagen",
-            "name": "Nombre",
-            "password_confirm": "Confirma contraseña",
-            "password": "Contraseña"
-        },
         "register": {
             "button": "Unirme"
         },
         "reset_pwd": {
             "title": "Para resetar tu contraseña, introduce el email que usas para entrar en NgGallery.",
             "button": "Enviar"
+        },
+        "input": {
+            "email": "Correo electrónico",
+            "img_url": "URL de imagen",
+            "name": "Nombre",
+            "password_confirm": "Confirma contraseña",
+            "password": "Contraseña"
         }
     },
     "image": {
@@ -135,15 +127,15 @@
         "updatedAt": "Actualizada: {{date}}",
         "createdAt": "Creada: {{date}}"
     },
+    "empty_images": {
+        "title": "Oops, No hay imágenes en esta galería!",
+        "subtitle": "Pulsa el botón de la esquina inferior para subir alguna"
+    },
     "upload": {
         "browse": "Explorar...",
         "button": "Subir",
         "label": "selecciona o suelta imágenes aquí",
         "progress": "Progreso: {{progress}} % Completado"
-    },
-    "empty_images": {
-        "title": "Oops, No hay imágenes en esta galería!",
-        "subtitle": "Pulsa el botón de la esquina inferior para subir alguna"
     },
     "profile": {
         "location": "Ubicación",
@@ -151,9 +143,7 @@
         "lastLogin": "Última conexión",
         "input": {
             "new_password": "Nueva contraseña",
-            "new_password_confirm": "Confirma nueva contraseña"
-        },
-        "b": {
+            "new_password_confirm": "Confirma nueva contraseña",
             "save_changes": "Guardar Cambios",
             "change_password": "Cambiar contraseña"
         }

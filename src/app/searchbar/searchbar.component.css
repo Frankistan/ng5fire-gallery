@@ -1,0 +1,7 @@
+.search-form-field {
+    font-size: 1rem;
+}
+
+mat-form-field.search-form-field mat-icon {
+    cursor: pointer !important;
+}

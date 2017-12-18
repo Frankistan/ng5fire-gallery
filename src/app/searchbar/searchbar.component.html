@@ -1,0 +1,9 @@
+<mat-toolbar class="mat-elevation-z6">
+    <button color="primary" style="align-self: center;" mat-icon-button (click)="closeSearch()">
+        <mat-icon >arrow_back</mat-icon>
+    </button>
+    <mat-form-field color="primary" fxFlex="100" class="search-form-field" floatPlaceholder="never">
+        <input matInput #searchInput autofocus [placeholder]="'navbar.search' | translate " type="text" (keyup)="search($event.target.value)">
+        <mat-icon color="primary" matSuffix (click)="search('');searchInput.value=''">close</mat-icon>
+    </mat-form-field>
+</mat-toolbar>

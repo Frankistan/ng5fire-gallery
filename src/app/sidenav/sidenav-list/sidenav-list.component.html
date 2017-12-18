@@ -1,0 +1,27 @@
+<mat-nav-list>
+    <a mat-list-item routerLinkActive="active" routerLink="/home">
+        <mat-icon mdListIcon>home</mat-icon>
+        {{ 'sidenav.home' | translate }}
+    </a>
+    <a mat-list-item routerLinkActive="active" routerLink="/images">
+        <mat-icon mdListIcon>camera</mat-icon>
+        {{ 'sidenav.gallery' | translate }}
+    </a>
+    <a mat-list-item routerLinkActive="active" routerLink="/upload">
+        <mat-icon mdListIcon>cloud_upload</mat-icon>
+        {{ 'sidenav.upload' | translate }}
+    </a>
+    <a mat-list-item routerLinkActive="active" routerLink="/favorites">
+        <mat-icon mdListIcon>favorite</mat-icon>
+        {{ 'sidenav.favorites' | translate }}
+    </a>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="active" routerLink="/settings">
+        <mat-icon mdListIcon>settings</mat-icon>
+        {{ 'sidenav.settings' | translate }}
+    </a>
+    <a mat-list-item (click)="auth.logout();">
+        <mat-icon mdListIcon>power_settings_new</mat-icon>
+        {{ 'sidenav.logout' | translate }}
+    </a>
+</mat-nav-list>

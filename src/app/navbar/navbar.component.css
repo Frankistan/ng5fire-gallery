@@ -1,0 +1,17 @@
+.sidenav-toggle {
+    padding: 0;
+    min-width: 64px;
+    display: flex;
+}
+
+.sidenav-toggle mat-icon {
+    font-size: 30px;
+    height: 64px;
+    width: 64px;
+    line-height: 64px;
+    color: #fff;
+}
+
+mat-toolbar#navbar {
+    padding: 0 1rem 0 0;
+}

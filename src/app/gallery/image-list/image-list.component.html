@@ -1,0 +1,9 @@
+<mat-grid-list *ngIf="!(coreSrv.isLoading|async)" [cols]="cols" [rowHeight]="rowHeight" gutterSize="4px" [ngStyle]="{'display': totalImages ? 'flex':'none'}">
+    <mat-grid-tile *ngFor="let image of images$ |async | filterBy: search | orderBy: sortBy: order" lazy-load-images>
+        <app-image-element [image]="image"></app-image-element>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<app-empty-gallery [ngStyle]="{'display': totalImages ? 'none':'block'}" *ngIf="!(coreSrv.isLoading|async)"></app-empty-gallery>
+
+<fab-upload-images></fab-upload-images>

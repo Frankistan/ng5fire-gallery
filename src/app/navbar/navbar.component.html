@@ -1,0 +1,22 @@
+<mat-toolbar id="navbar" color="primary" class="mat-elevation-z6">
+    <button mat-button class="sidenav-toggle" (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{ title|async|translate }}</span>
+    <span fxFlex></span>
+    <ng-template [ngIf]="auth.isAuthenticated | async">
+        <button mat-icon-button *ngIf="displaySearchBtn" (click)="openSearch()">
+            <mat-icon>search</mat-icon>
+        </button>
+        <sort-by-btn></sort-by-btn>
+    </ng-template>
+    <ng-template [ngIf]="!(auth.isAuthenticated | async)">
+        <lang-btn></lang-btn>
+        <a routerLink="/login" fxHide.xs="true" mat-button (click)="sidenav.close()">
+            {{ 'sidenav.login' | translate }}
+        </a>
+        <button routerLink="/login" fxHide.gt-xs="true" mat-icon-button>
+            <mat-icon aria-label="iniciar sesion">account_circle</mat-icon>
+        </button>
+    </ng-template>
+</mat-toolbar>
