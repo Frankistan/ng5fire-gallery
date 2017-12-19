@@ -6,7 +6,7 @@
 // https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
 // https://medium.com/covalent-ui/angular-material-2-theme-tutorial-2f7e6c344006
 @import '~@angular/material/theming';
-@import './sidenav-list-theme';
+@import './dark-theme';
 @include mat-core();
 $custom-primary: mat-palette($mat-teal, 500);
 $custom-accent: mat-palette($mat-lime);
@@ -23,7 +23,7 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 
 mat-nav-list {
     [mat-list-item].active {
-        color: mat-color($custom-primary);
+        color: mat-color($custom-primary, default-contrast) !important;
         mat-icon[mat-list-avatar] {
             background-color: mat-color($custom-primary);
             color: mat-color($custom-primary);
@@ -52,7 +52,7 @@ mat-sidenav-content {
 }
 
 
-/* Define an alternate DARK THEME*/
+/* Define an alternative DARK THEME*/
 
 $dark-primary: mat-palette($mat-indigo, A100, A100, A200);
 $dark-accent: mat-palette($mat-red, A200, A100, A400);

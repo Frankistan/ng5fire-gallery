@@ -6,14 +6,20 @@
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
     mat-nav-list {
-        [mat-list-item].active {
-            color: mat-color($primary, default-contrast);
-            mat-icon[mat-list-avatar] {
-                background-color: mat-color($primary);
-                color: mat-color($primary, default-contrast);
+        [mat-list-item] {
+            &:hover,
+            &:focus {
+                background-color: #757575 !important;
             }
-            mat-icon {
-                color: mat-color($primary, default);
+            &.active {
+                color: mat-color($primary, default-contrast);
+                mat-icon[mat-list-avatar] {
+                    background-color: mat-color($primary);
+                    color: mat-color($primary, default-contrast);
+                }
+                mat-icon {
+                    color: mat-color($primary, default);
+                }
             }
         }
     }
