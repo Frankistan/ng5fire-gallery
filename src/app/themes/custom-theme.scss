@@ -39,17 +39,16 @@ mat-input-container.full-width {
     margin: 0.5rem 0;
 }
 
-// div>mat-card {
-//     margin: 0.5rem;
-// }
-// .sidenav-content mat-grid-list {
-//     margin: 0.5rem;
-// }
 mat-sidenav-content {
-    // .sidenav-content {
     background-color: #ECEFF1;
     padding: 0.5rem 0.5rem 0 0.5rem;
-    // }
+    [mat-button] {
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: mat-color($custom-primary, default-contrast)
+        }
+    }
 }
 
 

@@ -21,10 +21,8 @@
         background-image: url('../../assets/img/night7.png');
     }
     mat-sidenav-content {
-        // .sidenav-content {
         background-color: #212121;
         padding: 0.5rem 0.5rem 0 0.5rem;
-        // }
         [mat-button] {
             &:hover,
             &:active,
@@ -33,18 +31,4 @@
             }
         }
     }
-    // .ml-file-list {
-    //     border-bottom: 1px solid mat-color($foreground, divider);
-    // }
-    // .ml-file-list-item {
-    //     &:hover,
-    //     &:active,
-    //     &:focus {
-    //         background-color: mat-color($background, hover);
-    //     }
-    //     &.selected {
-    //         background-color: mat-color($primary, lighter, 0.5);
-    //         color: mat-color($foreground, text);
-    //     }
-    // }
 }
