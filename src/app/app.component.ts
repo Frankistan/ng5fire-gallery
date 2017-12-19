@@ -7,11 +7,13 @@ import { DefaultLangChangeEvent } from '@ngx-translate/core';
 import { SettingsService } from './shared/services/settings.service';
 import { RecaptchaLoaderService } from 'ng-recaptcha';
 import { BehaviorSubject } from 'rxjs';
+import { routerTransition } from './animations/router-transition';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    animations: [routerTransition]
 })
 export class AppComponent {
 
@@ -53,7 +55,8 @@ export class AppComponent {
         this.scrollPosition = scroll;
     }
 
-    hola() {
-        // console.log('sidenav abierto');
+    public getRouterOutletState(outlet) {
+
+        return outlet.isActivated ? outlet.activatedRoute : '';
     }
 }

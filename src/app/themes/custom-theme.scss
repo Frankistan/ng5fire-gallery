@@ -22,14 +22,28 @@ $custom-theme: mat-light-theme($custom-primary, $custom-accent, $custom-warn);
 /* CSS STYLES APPLIED TO CUSTOM THEMES*/
 
 mat-nav-list {
-    [mat-list-item].active {
-        color: mat-color($custom-primary, default-contrast) !important;
-        mat-icon[mat-list-avatar] {
-            background-color: mat-color($custom-primary);
-            color: mat-color($custom-primary);
+    [mat-list-item].active {}
+}
+
+mat-nav-list {
+    [mat-list-item] {
+        &:hover,
+        &:focus {
+            background-color: #BDBDBD !important;
+            color: black;
+            mat-icon {
+                color: mat-color($custom-primary, default);
+            }
         }
-        mat-icon {
+        &.active {
             color: mat-color($custom-primary);
+            mat-icon[mat-list-avatar] {
+                background-color: mat-color($custom-primary);
+                color: mat-color($custom-primary);
+            }
+            mat-icon {
+                color: mat-color($custom-primary);
+            }
         }
     }
 }

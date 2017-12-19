@@ -10,6 +10,9 @@
             &:hover,
             &:focus {
                 background-color: #757575 !important;
+                mat-icon {
+                    color: mat-color($primary, lighter);
+                }
             }
             &.active {
                 color: mat-color($primary, default-contrast);
@@ -18,7 +21,7 @@
                     color: mat-color($primary, default-contrast);
                 }
                 mat-icon {
-                    color: mat-color($primary, default);
+                    color: mat-color($primary, darker);
                 }
             }
         }

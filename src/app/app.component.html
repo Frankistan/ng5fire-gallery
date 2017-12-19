@@ -3,14 +3,14 @@
     <app-searchbar *ngIf="coreSrv.isSearching|async"> </app-searchbar>
     <div class="app-sidenav">
         <mat-sidenav-container class="sidenav-container">
-            <mat-sidenav #sidenav mode="over" (openedChange)="hola()" (click)="sidenav.close()" class="sidenav-panel">
+            <mat-sidenav #sidenav mode="over" (click)="sidenav.close()" class="sidenav-panel">
                 <!-- <app-sidenav-header></app-sidenav-header> -->
                 <app-profile-info></app-profile-info>
                 <app-sidenav-list></app-sidenav-list>
             </mat-sidenav>
-            <div class="sidenav-content" (ngx-scroll-tracker)="scrollHandler($event)">
+            <div class="sidenav-content" (ngx-scroll-tracker)="scrollHandler($event)" [@routerTransition]="getRouterOutletState(o)">
                 <spinner></spinner>
-                <router-outlet></router-outlet>
+                <router-outlet #o="outlet"></router-outlet>
                 <fab-scroll-to-top [htmlElement]="scrollableElement"></fab-scroll-to-top>
             </div>
         </mat-sidenav-container>
