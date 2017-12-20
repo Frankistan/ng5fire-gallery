@@ -1,15 +1,5 @@
-.sidenav-toggle {
-    padding: 0;
-    min-width: 64px;
-    display: flex;
-}
-
-.sidenav-toggle mat-icon {
-    font-size: 30px;
-    height: 64px;
-    width: 64px;
-    line-height: 64px;
-    color: #fff;
+button.menu {
+    margin: 0 0.5rem;
 }
 
 mat-toolbar#navbar {

@@ -1,7 +1,10 @@
 .search-form-field {
     font-size: 1rem;
+    line-height: 1.5rem;
 }
 
-mat-form-field.search-form-field mat-icon {
+mat-icon[matsuffix] {
+    vertical-align: text-bottom;
+    padding-left: 0.5rem;
     cursor: pointer !important;
 }
