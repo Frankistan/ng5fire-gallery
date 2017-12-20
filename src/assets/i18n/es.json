@@ -11,7 +11,7 @@
         "image": {
             "created": "Imagen subida correctamente!",
             "liked": "Añadida a tus favoritas",
-            "not_liked": "Elimada de tus favoritas",
+            "not_liked": "Eliminada de tus favoritas",
             "deleted": "Imagen borrada"
         },
         "logged_in": "Ya estás logueado",
