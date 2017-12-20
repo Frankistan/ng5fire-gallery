@@ -2,18 +2,18 @@
     <!-- <button mat-button class="sidenav-toggle" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button> -->
-    <button class="menu" mat-icon-button (click)="sidenav.toggle()" *ngIf="auth.isAuthenticated | async">
+    <button class="menu" mat-icon-button (click)="sidenav.toggle()" *ngIf="auth.isAuthenticated | async let isAuth">
         <mat-icon>menu</mat-icon>
     </button>
     <span>{{ title|async|translate }}</span>
     <span fxFlex></span>
-    <ng-template [ngIf]="auth.isAuthenticated | async">
+    <ng-template [ngIf]="isAuth">
         <button mat-icon-button *ngIf="displaySearchBtn" (click)="openSearch()">
             <mat-icon>search</mat-icon>
         </button>
         <sort-by-btn></sort-by-btn>
     </ng-template>
-    <ng-template [ngIf]="!(auth.isAuthenticated | async)">
+    <ng-template [ngIf]="!(isAuth)">
         <lang-btn></lang-btn>
         <a routerLink="/login" fxHide.xs="true" mat-button (click)="sidenav.close()">
             {{ 'sidenav.login' | translate }}
