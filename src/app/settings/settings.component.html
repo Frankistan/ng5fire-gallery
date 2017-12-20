@@ -1,6 +1,6 @@
 <div fxLayoutAlign="center">
     <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="80" fxFlex.gt-sm="55">
-        <mat-card-content fxLayout="row">
+        <mat-card-content>
             <mat-list>
                 <h3 matSubheader>{{ 'settings.appearance.section' | translate }}</h3>
                 <mat-list-item>
@@ -19,7 +19,7 @@
                     <mat-icon matListIcon>language</mat-icon>
                     <h4 matLine> {{ 'settings.language.title' | translate }} </h4>
                     <p matLine> {{ 'settings.language.description' | translate }}</p>
-                    <mat-form-field>
+                    <mat-form-field fxFlex="23">
                         <mat-select [placeholder]="'settings.language.input' | translate" [(ngModel)]="selectedLanguage" (change)="switchLanguage($event)">
                             <mat-option *ngFor="let lang of languages" [value]="lang.value">
                                 {{ lang.viewValue }}

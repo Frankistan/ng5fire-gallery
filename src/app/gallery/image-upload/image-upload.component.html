@@ -21,7 +21,7 @@
         </div>
         <mat-card-footer class="mat-card-no-margin" *ngIf="files">
 
-            <mat-progress-bar color="primary" mode="determinate" value="{{0 || upload?.progress }}">
+            <mat-progress-bar color="accent" mode="determinate" value="{{0 || upload?.progress }}">
             </mat-progress-bar>
             <span [translate]="'upload.progress'" [translateParams]="{progress: upload?.progress ? upload?.progress : 0}"></span>
         </mat-card-footer>

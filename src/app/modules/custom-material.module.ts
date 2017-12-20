@@ -40,7 +40,9 @@ const MaterialModule = [
 
 @NgModule({
     exports: [
-        MaterialModule
+        MaterialModule,
+        PlatformModule,
+        ObserversModule
     ],
 })
 export class CustomMaterialModule { }
