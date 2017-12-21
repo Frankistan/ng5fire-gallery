@@ -15,12 +15,14 @@ export class LocationService {
         this.getLocation();
     }
 
-    getLocation() {
+    private getLocation() {
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(
                 position => {
                     this.geolocationPosition = position,
-                        this._http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&sensor=false`).subscribe(res => {
+                        this._http
+                        .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&sensor=false`)
+                        .subscribe(res => {
                             if (!res) return;
                             let data: any = res;
                             let address = data.results[1].formatted_address;

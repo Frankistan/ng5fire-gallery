@@ -42,7 +42,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
-import { SidenavHeaderComponent } from './sidenav/sidenav-header/sidenav-header.component';
 import { SidenavListComponent } from './sidenav/sidenav-list/sidenav-list.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SortByBtnComponent } from './navbar/sort-by-btn/sort-by-btn.component';
@@ -74,7 +73,6 @@ import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
         ResetPasswordComponent,
         SearchbarComponent,
         SettingsComponent,
-        SidenavHeaderComponent,
         SidenavListComponent,
         SidenavListComponent,
         SignupComponent,

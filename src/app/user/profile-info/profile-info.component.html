@@ -1,15 +1,15 @@
 <div fxLayout="row" class="sidenav-toolbar">
     <a routerLink="/user-profile">
         <div fxFlex fxLayoutAlign="center center" *ngIf="auth.user | async; let user;">
-            <div fxFlex="25" fxLayoutAlign="center center">
-                <img class="mat-card-avatar sidenav-user-image" *ngIf="user.photoURL" [src]="user.photoURL">
+            <div fxFlex="30" fxLayoutAlign="center center">
+                <img class="mat-card-avatar sidenav-user-image" [@scaleAnimation] *ngIf="user.photoURL" [src]="user.photoURL">
                 <div class="mat-card-avatar header-image" *ngIf="!user.photoURL">
                     <mat-icon mat-24>account_circle</mat-icon>
                 </div>
             </div>
-            <div fxFlex="75" fxLayout="column" fxFlexAlign="center">
-                <span class="mat-card-title">{{ user.displayName }}</span>
-                <span class="mat-card-subtitle">{{ user.email }}</span>
+            <div fxFlex="70" fxLayout="column" [@slideUpFadeIn] fxFlexAlign="center">
+                <span class="truncate mat-card-title">{{ user.displayName }}</span>
+                <span class="truncate mat-card-subtitle">{{ user.email }}</span>
             </div>
         </div>
     </a>

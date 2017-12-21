@@ -25,7 +25,9 @@
             "auth/email-already-in-use": "The email address is already in use by another account.",
             "auth/requires-recent-login": "This operation is sensitive and requires recent authentication. Log in again before retrying this request",
             "auth/user-not-found": "There is no user record corresponding to this identifier. The user may have been deleted.",
-            "auth/operation-not-allowed": "Operation not allowed"
+            "auth/operation-not-allowed": "Operation not allowed",
+            "auth/popup-closed-by-user": "Pop up closed by user"
+
         },
         "server": {
             "access_denied": "Access denied"

@@ -1,4 +1,4 @@
-import { Component,  Inject, Output } from '@angular/core';
+import { Component,  Inject, Output, ElementRef, ViewChild } from '@angular/core';
 import { ScrollTrackerEventData } from '@nicky-lenaers/ngx-scroll-tracker';
 import { CoreService } from './shared/services/core.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -8,6 +8,7 @@ import { SettingsService } from './shared/services/settings.service';
 import { RecaptchaLoaderService } from 'ng-recaptcha';
 import { BehaviorSubject } from 'rxjs';
 import { routerTransition } from './animations/router-transition';
+import { MatSidenav } from '@angular/material';
 
 @Component({
     selector: 'app-root',
@@ -17,6 +18,7 @@ import { routerTransition } from './animations/router-transition';
 })
 export class AppComponent {
 
+    @ViewChild('sidenav') sidenav: MatSidenav ;
     @Output() openedChange;
     title: BehaviorSubject<string> = new BehaviorSubject('title.app');
     scrollPosition: number = 0;
@@ -59,4 +61,9 @@ export class AppComponent {
 
         return outlet.isActivated ? outlet.activatedRoute : '';
     }
+
+    // toggleSidenav(){
+    //     console.log('sidenav abierto', this.sidenav.opened);
+    //     // this.sidenav.nativeElement
+    // }
 }

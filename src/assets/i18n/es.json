@@ -25,7 +25,8 @@
             "auth/email-already-in-use": "El email ya lo usa otro usuario.",
             "auth/requires-recent-login": "Esta operación es sensible y requiere que te re-autentiques. Inicia sesión nuevamente",
             "auth/user-not-found": "Las credenciales no corresponden a ningún usuario. El usuario no existe o fue eliminado.",
-            "auth/operation-not-allowed": "Operación no autorizada"
+            "auth/operation-not-allowed": "Operación no autorizada",
+            "auth/popup-closed-by-user": "Ventana cerrada por el usuario"
         },
         "server": {
             "access_denied": "Acceso denegado"

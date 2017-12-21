@@ -13,6 +13,7 @@ export class NavbarComponent {
     @Input('sidenav') sidenav: MatSidenav;
 
     title: BehaviorSubject<string> = new BehaviorSubject('title.app');
+    isOpened: BehaviorSubject<boolean> = new BehaviorSubject(false);
     isSearching: boolean = false;
     displaySearchBtn: boolean = true;
 

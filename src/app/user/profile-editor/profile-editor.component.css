@@ -1,8 +1,9 @@
 .card-header-image {
     background-size: cover;
-    height: 6rem;
-    width: 6rem;
+    height: 10rem;
+    width: 10rem;
     border: 1px solid grey;
+    cursor: pointer;
 }
 
 mat-card-subtitle.lastLogin {
