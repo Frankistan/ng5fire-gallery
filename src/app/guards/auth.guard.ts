@@ -18,7 +18,10 @@ export class AuthGuard implements CanActivate {
         return this.auth.isAuthenticated.map<boolean, boolean>((isAuthenticated: boolean) => {
             if (!isAuthenticated) {
                 this.snackBar.open('toast.server.access_denied', 'toast.close', 1500);
-                this.router.navigate(['/login']);
+                // this.router.navigate(['/login']);
+
+                // not logged in so redirect to login page with the return url and return false
+                this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
             }
             return isAuthenticated;
         });

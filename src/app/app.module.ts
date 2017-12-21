@@ -51,6 +51,7 @@ import { ProfileInfoComponent } from './user/profile-info/profile-info.component
 import { SettingsComponent } from './settings/settings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
+import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
 
 @NgModule({
     declarations: [
@@ -108,6 +109,7 @@ import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
     providers: [
         AuthGuard,
         AuthService,
+        ExitEditProfileGuard,
         CoreService,
         ImageService,
         LocationService,

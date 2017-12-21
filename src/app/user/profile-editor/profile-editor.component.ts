@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild,  Renderer2, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, Renderer2, AfterContentInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
@@ -10,7 +10,7 @@ import { UploadImageService } from '../../shared/services/upload-image.service';
 import { PasswordValidator } from '../../validators/match-password';
 import { Upload } from '../../models/upload';
 import { User } from '../../models/user';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import * as moment from 'moment';
 import { scaleAnimation } from '../../animations/scale.animation';
 
@@ -18,7 +18,7 @@ import { scaleAnimation } from '../../animations/scale.animation';
     selector: 'app-profile-editor',
     templateUrl: './profile-editor.component.html',
     styleUrls: ['./profile-editor.component.css'],
-    animations: [ scaleAnimation],
+    animations: [scaleAnimation],
 })
 export class ProfileEditorComponent {
 
@@ -26,19 +26,22 @@ export class ProfileEditorComponent {
     profileForm: FormGroup;
     subscription: Subscription;
     showFields: boolean = false;
+    private changed: boolean = false;
+    private saved: boolean = false;
 
     upload: Upload = null;
 
     image: File = null;
 
+
     constructor(
         private dialog: MatDialog,
-        public auth: AuthService,
         private formBuilder: FormBuilder,
-        public translate: TranslateService,
-        private userService: UserService,
         private uploadImageSrv: UploadImageService,
+        private userService: UserService,
+        public auth: AuthService,
         public geoPos: LocationService,
+        public translate: TranslateService,
     ) {
         auth.user.subscribe((user) => {
             this.userInfo = user;
@@ -52,7 +55,11 @@ export class ProfileEditorComponent {
                 }, {
                         validator: PasswordValidator.MatchPassword // your validation method
                     });
+
             }
+            this.profileForm.valueChanges.subscribe(val => {
+                this.changed = true;
+            });
 
         });
 
@@ -65,6 +72,18 @@ export class ProfileEditorComponent {
         });
 
 
+    }
+
+    canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        if (this.changed && !this.saved) {
+            let answer = false;
+            this.translate.get('profile.discard').subscribe(result => {
+                answer = confirm(result);
+            });
+            return answer;
+        } else {
+            return true;
+        }
     }
 
     togglePasswordFields() {
@@ -82,6 +101,7 @@ export class ProfileEditorComponent {
         };
 
         this.userService.update(data, inputValue.password);
+        this.saved = true;
     }
 
     uploadAvatar(image) {
@@ -129,7 +149,7 @@ export class ProfileEditorComponent {
         </div>
             `,
 })
-export class UploadAvatarDialog implements OnInit, AfterContentInit{
+export class UploadAvatarDialog implements OnInit, AfterContentInit {
 
     texto: string = "hola que tal";
     file: File = null;
@@ -138,7 +158,7 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit{
     @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
     constructor(
-        private renderer:Renderer2,
+        private renderer: Renderer2,
         public dialogRef: MatDialogRef<UploadAvatarDialog>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -161,7 +181,7 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit{
         });
     }
 
-    private loadCropperSettings(){
+    private loadCropperSettings() {
         this.cropperSettings = new CropperSettings();
         this.cropperSettings.width = 200;
         this.cropperSettings.height = 200;
@@ -218,12 +238,12 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit{
         //Add 'implements AfterContentInit' to the class.
         let canvas = document.querySelector('canvas');
         let content = document.querySelector('mat-dialog-content');
-        this.renderer.setAttribute(canvas, 'width', content.clientWidth-8+'');
+        this.renderer.setAttribute(canvas, 'width', content.clientWidth - 8 + '');
         // this.renderer.setElementStyle(canvas, 'width', content.clientWidth - 48 + '');
         // this.renderer.setElementStyle(canvas,'width','100%');
 
-        this.cropperSettings.canvasWidth = content.clientWidth-8;
-        canvas.width = content.clientWidth ;
+        this.cropperSettings.canvasWidth = content.clientWidth - 8;
+        canvas.width = content.clientWidth;
         // this.cropperSettings.canvasHeight = 400;
     }
 

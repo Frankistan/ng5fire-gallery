@@ -140,6 +140,7 @@
         "progress": "Progress: {{progress}} % Complete"
     },
     "profile": {
+        "discard": "Do you want to discard the changes?",
         "location": "Location",
         "location_not_available": "Location not available",
         "lastLogin": "Last login",

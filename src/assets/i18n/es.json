@@ -139,6 +139,7 @@
         "progress": "Progreso: {{progress}} % Completado"
     },
     "profile": {
+        "discard": "¿Descartar los cambios?",
         "location": "Ubicación",
         "location_not_available": "Ubicación no disponible",
         "lastLogin": "Última conexión",

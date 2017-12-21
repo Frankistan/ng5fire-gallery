@@ -11,6 +11,7 @@ import { SignupComponent } from './../auth/signup/signup.component';
 import { WelcomeComponent } from './../welcome/welcome.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { LoggedInGuard } from '../guards/logged-in.guard';
+import { ExitEditProfileGuard } from '../guards/exit-edit-profile.guard';
 
 const routes: Routes = [
     {
@@ -93,7 +94,8 @@ const routes: Routes = [
         }
     },
     {
-        path: 'user-profile', component: ProfileEditorComponent, canActivate: [AuthGuard],
+        path: 'user-profile', component: ProfileEditorComponent,
+        canActivate: [AuthGuard], canDeactivate: [ExitEditProfileGuard],
         data: {
             title: 'profile',
             animation: {
