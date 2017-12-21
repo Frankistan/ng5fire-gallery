@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AvatarModule } from "ng2-avatar";
 import { CustomCovalentModule } from './modules/custom-covalent.module';
 import { CustomFirebaseModule } from './modules/custom-firebase.module';
 import { CustomMaterialModule } from './modules/custom-material.module';
@@ -84,6 +85,7 @@ import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        AvatarModule,
         CustomCovalentModule,
         CustomFirebaseModule,
         CustomMaterialModule,

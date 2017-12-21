@@ -12,11 +12,13 @@ import { Upload } from '../../models/upload';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
+import { scaleAnimation } from '../../animations/scale.animation';
 
 @Component({
     selector: 'app-profile-editor',
     templateUrl: './profile-editor.component.html',
-    styleUrls: ['./profile-editor.component.css']
+    styleUrls: ['./profile-editor.component.css'],
+    animations: [ scaleAnimation],
 })
 export class ProfileEditorComponent {
 
