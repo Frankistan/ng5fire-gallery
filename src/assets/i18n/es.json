@@ -52,7 +52,8 @@
         "action": {
             "delete": "Borrar",
             "cancel": "Cancelar",
-            "upload": "Subir"
+            "upload": "Subir",
+            "confirm": "Aceptar"
         }
     },
     "title": {

@@ -46,7 +46,7 @@ import { SidenavListComponent } from './sidenav/sidenav-list/sidenav-list.compon
 import { SignupComponent } from './auth/signup/signup.component';
 import { SortByBtnComponent } from './navbar/sort-by-btn/sort-by-btn.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ProfileEditorComponent, UploadAvatarDialog } from './user/profile-editor/profile-editor.component';
+import { ProfileEditorComponent, UploadAvatarDialog, DiscardChangesDialog } from './user/profile-editor/profile-editor.component';
 import { ProfileInfoComponent } from './user/profile-info/profile-info.component';
 import { SettingsComponent } from './settings/settings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -58,6 +58,7 @@ import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
         AppComponent,
         AutofocusDirective,
         DeleteImageDialog,
+        DiscardChangesDialog,
         EmptyGalleryComponent,
         FabScrollToTopComponent,
         FabUploadImagesComponent,
@@ -104,7 +105,8 @@ import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
     ],
     entryComponents: [
         UploadAvatarDialog,
-        DeleteImageDialog
+        DeleteImageDialog,
+        DiscardChangesDialog
     ],
     providers: [
         AuthGuard,

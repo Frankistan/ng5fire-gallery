@@ -53,7 +53,8 @@
         "action": {
             "delete": "Delete",
             "cancel": "Cancel",
-            "upload": "Upload"
+            "upload": "Upload",
+            "confirm": "OK"
         }
     },
     "title": {

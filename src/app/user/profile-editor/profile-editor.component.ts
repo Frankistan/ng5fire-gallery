@@ -76,14 +76,21 @@ export class ProfileEditorComponent {
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
         if (this.changed && !this.saved) {
-            let answer = false;
-            this.translate.get('profile.discard').subscribe(result => {
-                answer = confirm(result);
-            });
-            return answer;
+            return this.opendDiscardDlg();
         } else {
             return true;
         }
+    }
+
+    private opendDiscardDlg():Observable<boolean>{
+        let dialogRef = this.dialog.open(DiscardChangesDialog, {
+            data: { answer: false }
+        });
+
+        return dialogRef.afterClosed().map(result => {
+            if (!result) return false;
+            return result.answer;
+        });
     }
 
     togglePasswordFields() {
@@ -110,7 +117,7 @@ export class ProfileEditorComponent {
         this.uploadImageSrv.uploadAvatar(this.upload, this.userInfo);
     }
 
-    openDialog(): void {
+    openUploadAvatarDlg():void{
         let dialogRef = this.dialog.open(UploadAvatarDialog, {
             // width: '250px',
             data: { file: this.image }
@@ -245,6 +252,41 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit {
         this.cropperSettings.canvasWidth = content.clientWidth - 8;
         canvas.width = content.clientWidth;
         // this.cropperSettings.canvasHeight = 400;
+    }
+
+}
+
+
+@Component({
+    selector: 'discard-changes-dialog',
+    template: `
+        <div >
+            <h2 mat-dialog-title style="margin:0; "> {{ 'profile.discard' | translate }} </h2>
+            <mat-dialog-actions align="end">
+                <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">{{ 'dialog.action.cancel' | translate }} </button>
+                <button mat-button [mat-dialog-close]="data" (click)="onConfirm()" tabindex="2" cdkFocusInitial>{{ 'dialog.action.confirm' | translate }} </button>
+            </mat-dialog-actions>
+        </div>
+            `,
+})
+export class DiscardChangesDialog implements OnInit {
+
+    constructor(
+        public dialogRef: MatDialogRef<DiscardChangesDialog>,
+        @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    }
+
+    ngOnInit() {
+    }
+
+    onNoClick(): void {
+        this.data.answer = true;
+        this.dialogRef.close();
+    }
+
+    onConfirm() {
+        this.data.answer = true;
     }
 
 }

@@ -5,7 +5,7 @@
     <ng-template #email>
         <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="80" fxFlex.gt-sm="40" *ngIf="auth.user | async; let user;">
             <mat-card-header>
-                <div mat-card-avatar (click)="openDialog()" [@scaleAnimation] class="card-header-image" [ngStyle]="{'background-image': 'url(' + user.photoURL + ')'}">
+                <div mat-card-avatar (click)="openUploadAvatarDlg()" [@scaleAnimation] class="card-header-image" [ngStyle]="{'background-image': 'url(' + user.photoURL + ')'}">
                     <avatar size="162" matListAvatar *ngIf="!user.photoURL" [name]="user.displayName.split(' ', 2).join(' ')" [displayType]="'circle'"></avatar>
                 </div>
                 <mat-card-title class="truncate">{{ user.displayName }}</mat-card-title>
