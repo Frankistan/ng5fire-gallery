@@ -21,7 +21,7 @@ import { scaleAnimation } from '../../animations/scale.animation';
     animations: [scaleAnimation],
 })
 export class ProfileEditorComponent {
-
+    hide:boolean= true;
     userInfo: User;
     profileForm: FormGroup;
     subscription: Subscription;
@@ -158,7 +158,6 @@ export class ProfileEditorComponent {
 })
 export class UploadAvatarDialog implements OnInit, AfterContentInit {
 
-    texto: string = "hola que tal";
     file: File = null;
     inputData: any = {};
     cropperSettings: CropperSettings;
