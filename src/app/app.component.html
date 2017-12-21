@@ -3,7 +3,7 @@
     <app-searchbar *ngIf="coreSrv.isSearching|async"> </app-searchbar>
     <div class="app-sidenav">
         <mat-sidenav-container class="sidenav-container">
-            <mat-sidenav #sidenav mode="side" opened="true" (click)="sidenav.close()" class="sidenav-panel">
+            <mat-sidenav #sidenav mode="over" (click)="sidenav.close()" class="sidenav-panel">
                 <app-profile-info></app-profile-info>
                 <app-sidenav-list></app-sidenav-list>
             </mat-sidenav>

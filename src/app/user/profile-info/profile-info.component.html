@@ -1,9 +1,9 @@
 <div fxLayout="row" class="sidenav-toolbar">
     <a routerLink="/user-profile">
         <div fxFlex fxLayoutAlign="center center" *ngIf="auth.user | async; let user;">
-            <div fxFlex="30" fxLayoutAlign="center center">
-                <img class="mat-card-avatar sidenav-user-image" [@scaleAnimation] *ngIf="user.photoURL" [src]="user.photoURL">
-                <avatar size="55" matListAvatar [@scaleAnimation] *ngIf="!user.photoURL" [name]="user.displayName.split(' ', 2).join(' ')" [displayType]="'circle'"></avatar>
+            <div fxFlex="30" fxLayoutAlign="center center" [@scaleAnimation]>
+                <img class="mat-card-avatar sidenav-user-image" *ngIf="user.photoURL" [src]="user.photoURL">
+                <avatar size="55" matListAvatar *ngIf="!user.photoURL" [name]="user.displayName.split(' ', 2).join(' ')" [displayType]="'circle'"></avatar>
             </div>
             <div fxFlex="70" fxLayout="column" [@slideUpFadeIn] fxFlexAlign="center">
                 <span class="truncate mat-card-title">{{ user.displayName }}</span>

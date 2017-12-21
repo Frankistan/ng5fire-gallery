@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, AfterViewInit, Renderer } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild,  Renderer2, AfterContentInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
@@ -107,7 +107,7 @@ export class ProfileEditorComponent {
 @Component({
     selector: 'upload-avatar-dialog',
     template: `
-        <div fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="50">
+        <div >
             <h2 mat-dialog-title style="margin:0; "> {{ 'dialog.avatar.title' | translate }} </h2>
             <mat-dialog-content>
                 <div>
@@ -129,7 +129,7 @@ export class ProfileEditorComponent {
         </div>
             `,
 })
-export class UploadAvatarDialog implements OnInit , AfterViewInit{
+export class UploadAvatarDialog implements OnInit, AfterContentInit{
 
     texto: string = "hola que tal";
     file: File = null;
@@ -138,7 +138,7 @@ export class UploadAvatarDialog implements OnInit , AfterViewInit{
     @ViewChild('cropper', undefined) cropper: ImageCropperComponent;
 
     constructor(
-        private renderer:Renderer,
+        private renderer:Renderer2,
         public dialogRef: MatDialogRef<UploadAvatarDialog>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -183,7 +183,6 @@ export class UploadAvatarDialog implements OnInit , AfterViewInit{
         this.cropperSettings.cropperDrawSettings.strokeWidth = 2;
         this.cropperSettings.noFileInput = true;
 
-        // this.inputData = {};
     }
 
     onNoClick(): void {
@@ -214,15 +213,18 @@ export class UploadAvatarDialog implements OnInit , AfterViewInit{
         );
     }
 
-    ngAfterViewInit() {
-        // FIX para que el canvas tenga el width al 100%
-        // ya que es un elemento creado, no se encuentra en
-        // el template del Dialog
+    ngAfterContentInit() {
+        //Called after ngOnInit when the component's or directive's content has been initialized.
+        //Add 'implements AfterContentInit' to the class.
         let canvas = document.querySelector('canvas');
-        this.renderer.setElementStyle(canvas,'width','100%');
+        let content = document.querySelector('mat-dialog-content');
+        this.renderer.setAttribute(canvas, 'width', content.clientWidth-8+'');
+        // this.renderer.setElementStyle(canvas, 'width', content.clientWidth - 48 + '');
+        // this.renderer.setElementStyle(canvas,'width','100%');
 
-        this.cropperSettings.canvasWidth =  canvas.width;
-        this.cropperSettings.canvasHeight =  canvas.height;
+        this.cropperSettings.canvasWidth = content.clientWidth-8;
+        canvas.width = content.clientWidth ;
+        // this.cropperSettings.canvasHeight = 400;
     }
 
 }

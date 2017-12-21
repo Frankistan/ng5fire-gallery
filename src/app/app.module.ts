@@ -40,7 +40,6 @@ import { ImageListComponent } from './gallery/image-list/image-list.component';
 import { ImageUploadComponent } from './gallery/image-upload/image-upload.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { SidenavListComponent } from './sidenav/sidenav-list/sidenav-list.component';
@@ -68,7 +67,6 @@ import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
         LangBtnComponent,
         LoginComponent,
         NavbarComponent,
-        ProfileComponent,
         ProfileEditorComponent,
         ProfileInfoComponent,
         ResetPasswordComponent,
