@@ -71,12 +71,6 @@ export class ProfileEditorComponent implements OnInit {
         this.subscription = this.translate.onLangChange.map(event => { return event.lang; }).subscribe((language) => {
             moment.locale(language);
         });
-
-        // this.location.getAddress.subscribe(res =>{
-        //     if(res=="")
-        //     console.log('resulta:', res);
-
-        // });
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -88,7 +82,7 @@ export class ProfileEditorComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.address$ = this.location.getAddress;
+        this.address$ = this.location.address$;
     }
 
     private opendDiscardDlg(): Observable<boolean> {

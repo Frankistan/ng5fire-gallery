@@ -1,18 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { User } from '../../models/user';
 
 
 @Injectable()
 export class LocationService {
+    user: User;
+    address: Observable<any>;
 
     position: any = null;
-    private address$: BehaviorSubject<string> = new BehaviorSubject("profile.location_not_available");
+    address$: BehaviorSubject<string> = new BehaviorSubject("profile.location_not_available");
 
     constructor(
         private _http: HttpClient,
+        private afAuth: AngularFireAuth,
+        private afs: AngularFirestore,
     ) {
-        this.getLocation();
+        this.afAuth.authState.
+            switchMap((user) => {
+                if (!user) return Observable.of(null);
+                return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+            }).subscribe(user => {
+
+                if (!this.user) {
+                    this.address$.next('empty');
+                }
+
+                this._http
+                    .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${user.location.lat},${user.location.lng}&sensor=false`)
+                    .map(res => {
+                        if (!res) return 'empty';
+                        let data: any = res;
+                        return data.results[1].formatted_address;
+                    }).subscribe(address => this.address$.next(address));
+            })
     }
 
     getLocation() {
@@ -22,7 +46,7 @@ export class LocationService {
                     this.position = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
-                    }
+                    };
                 },
                 error => {
                     switch (error.code) {
@@ -40,19 +64,5 @@ export class LocationService {
                 }
             );
         };
-    }
-
-    get getAddress(): Observable<string> {
-        if (!this.position) {
-            return Observable.of('empty');
-        }
-
-        return this._http
-            .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.position.lat},${this.position.lng}&sensor=false`)
-            .map(res => {
-                if (!res) return 'empty';
-                let data: any = res;
-                return data.results[1].formatted_address;
-            });
     }
 }
