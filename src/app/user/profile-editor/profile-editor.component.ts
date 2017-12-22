@@ -20,14 +20,15 @@ import { scaleAnimation } from '../../animations/scale.animation';
     styleUrls: ['./profile-editor.component.css'],
     animations: [scaleAnimation],
 })
-export class ProfileEditorComponent {
-    hide:boolean= true;
+export class ProfileEditorComponent implements OnInit {
+    hide: boolean = true;
     userInfo: User;
     profileForm: FormGroup;
     subscription: Subscription;
     showFields: boolean = false;
     private changed: boolean = false;
     private saved: boolean = false;
+    address$: Observable<string>;
 
     upload: Upload = null;
 
@@ -40,7 +41,7 @@ export class ProfileEditorComponent {
         private uploadImageSrv: UploadImageService,
         private userService: UserService,
         public auth: AuthService,
-        public geoPos: LocationService,
+        private location: LocationService,
         public translate: TranslateService,
     ) {
         auth.user.subscribe((user) => {
@@ -71,7 +72,11 @@ export class ProfileEditorComponent {
             moment.locale(language);
         });
 
+        // this.location.getAddress.subscribe(res =>{
+        //     if(res=="")
+        //     console.log('resulta:', res);
 
+        // });
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -82,7 +87,11 @@ export class ProfileEditorComponent {
         }
     }
 
-    private opendDiscardDlg():Observable<boolean>{
+    ngOnInit() {
+        this.address$ = this.location.getAddress;
+    }
+
+    private opendDiscardDlg(): Observable<boolean> {
         let dialogRef = this.dialog.open(DiscardChangesDialog, {
             data: { answer: false }
         });
@@ -117,7 +126,7 @@ export class ProfileEditorComponent {
         this.uploadImageSrv.uploadAvatar(this.upload, this.userInfo);
     }
 
-    openUploadAvatarDlg():void{
+    openUploadAvatarDlg(): void {
         let dialogRef = this.dialog.open(UploadAvatarDialog, {
             // width: '250px',
             data: { file: this.image }

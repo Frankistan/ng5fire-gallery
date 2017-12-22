@@ -1,3 +1,4 @@
+import { LocationService } from './shared/services/location.service';
 import { Component,  Inject, Output, ElementRef, ViewChild } from '@angular/core';
 import { ScrollTrackerEventData } from '@nicky-lenaers/ngx-scroll-tracker';
 import { CoreService } from './shared/services/core.service';
@@ -30,6 +31,7 @@ export class AppComponent {
         public auth: AuthService,
         public coreSrv: CoreService,
         private settingsService: SettingsService,
+        private location: LocationService
     ){
         // Setting default lang that will be used as a fallback when a translation isn't found in the current language
         translate.setDefaultLang('es');
@@ -39,6 +41,8 @@ export class AppComponent {
             this.coreSrv.language.next(settings.language);
             this.title = this.coreSrv.title;
         });
+
+        location.getLocation();
     }
 
     scrollHandler(eventData: ScrollTrackerEventData) {
@@ -61,9 +65,4 @@ export class AppComponent {
 
         return outlet.isActivated ? outlet.activatedRoute : '';
     }
-
-    // toggleSidenav(){
-    //     console.log('sidenav abierto', this.sidenav.opened);
-    //     // this.sidenav.nativeElement
-    // }
 }

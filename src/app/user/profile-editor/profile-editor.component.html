@@ -15,9 +15,9 @@
                     <span>{{ 'profile.lastLogin' | translate }} : </span>
                     <time>{{ auth.lastLoginAt|async | amTimeAgo }}</time>
                 </mat-card-subtitle>
-                <mat-card-subtitle class="lastLogin" *ngIf="geoPos.getAddress | async; let address;">
-                    <mat-icon>{{ address!='profile.location_not_available' ? 'location_on' : 'location_off'}}</mat-icon>
-                    <span>{{ address!='profile.location_not_available' ?  ('profile.location' | translate) + ' : ' +address : ('profile.location_not_available' | translate) }} </span>
+                <mat-card-subtitle class="lastLogin" *ngIf="address$ |async; let address">
+                    <mat-icon>{{ address=='empty' ? 'location_off' : 'location_on'}}</mat-icon>
+                    <span>{{ address=='empty' ? ('profile.location_not_available' | translate) : address }} </span>
                 </mat-card-subtitle>
             </mat-card-header>
             <form autocomplete="off" novalidate [formGroup]="profileForm" (submit)="updateProfile()">
