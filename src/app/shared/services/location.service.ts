@@ -6,8 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class LocationService {
 
-    // private geolocationPosition: Position;
-    private position:any = null;
+    position: any = null;
     private address$: BehaviorSubject<string> = new BehaviorSubject("profile.location_not_available");
 
     constructor(
@@ -44,7 +43,7 @@ export class LocationService {
     }
 
     get getAddress(): Observable<string> {
-        if(!this.position ) {
+        if (!this.position) {
             return Observable.of('empty');
         }
 

@@ -3,5 +3,6 @@ export interface User {
     email?: string,
     photoURL?: string,
     displayName?: string,
-    settings?:string
+    settings?:string,
+    location?:{}
 }

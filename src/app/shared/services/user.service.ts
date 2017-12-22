@@ -14,13 +14,13 @@ export class UserService {
         private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
         private snackBar: SnackbarService,
-    ) {}
+    ) { }
 
     update(user: User, password: string = "") {
 
         this.userRef = this.afs.doc(`users/${user.uid}`);
 
-        if(password){
+        if (password) {
 
             this.afAuth.auth.currentUser.updatePassword(password)
                 .then(success => {
@@ -38,15 +38,29 @@ export class UserService {
                 .catch(error => {
                     this.snackBar.open('toast.firebase.' + error.code, 'toast.close');
                 });
-        }else{
+        } else {
             this.afAuth.auth.currentUser.updateProfile({
                 displayName: user.displayName,
                 photoURL: user.photoURL
             });
 
-            this.userRef.set(user)
-                .then(success => { this.snackBar.open('toast.profile','toast.close');  })
+            this.userRef.update(user)
+                .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
                 .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
         }
+    }
+
+    create(user: User) {
+
+        this.userRef = this.afs.doc(`users/${user.uid}`);
+
+        this.afAuth.auth.currentUser.updateProfile({
+            displayName: user.displayName,
+            photoURL: user.photoURL
+        });
+
+        this.userRef.set(user)
+            .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
+            .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
     }
 }

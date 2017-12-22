@@ -36,10 +36,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         const inputValue = this.loginForm.value;
-        this.auth.login(inputValue.email, inputValue.password)
-            .then(() => this.router.navigate(['/images']))
-            .catch(error => this.errorHandler(error.code));
-
+        this.auth.login(inputValue.email, inputValue.password);
     }
 
     socialLogin(provider: string) {

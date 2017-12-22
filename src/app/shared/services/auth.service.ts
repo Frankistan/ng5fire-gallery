@@ -7,6 +7,7 @@ import { UserService } from './user.service';
 import { Observable,BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user';
 import * as firebase from 'firebase/app';
+import { LocationService } from './location.service';
 
 @Injectable()
 export class AuthService {
@@ -21,6 +22,7 @@ export class AuthService {
         private router: Router,
         private snackBar: SnackbarService,
         private userService: UserService,
+        private location: LocationService
     ) {
         this._user$ = this.afAuth.authState.
             switchMap((user) => {
@@ -43,7 +45,17 @@ export class AuthService {
     }
 
     login(email: string, password: string): Promise<any> {
-        return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+        return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+            .then((user) => {
+                const data: User = {
+                    uid: user.uid,
+                    location: this.location.position
+                };
+                this.userService.update(data);
+                this.router.navigate(['/images']);
+            })
+            .catch(error => this.errorHandler(error.code));
+
     }
 
     signup(user: any = {}) {
@@ -55,15 +67,14 @@ export class AuthService {
                     displayName: user.name,
                     photoURL: user.photoURL
                 };
-
-                this.userService.update(data);
+                this.userService.create(data);
             }));
     }
 
     logout() {
         this.afAuth.auth.signOut()
             .then(success => { this.router.navigate(['/login']); })
-            .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
+            .catch (error => this.errorHandler(error.code));
     }
 
     resetPassword(email: string): Promise<any> {
@@ -111,5 +122,9 @@ export class AuthService {
 
     get isAuthenticated(): Observable<boolean> {
         return this._isLoggedIn$;
+    }
+
+    private errorHandler(error: any) {
+        this.snackBar.open('toast.firebase.' + error, 'toast.close');
     }
 }
