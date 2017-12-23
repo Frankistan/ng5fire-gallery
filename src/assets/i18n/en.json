@@ -75,7 +75,9 @@
             "date": "Date",
             "name": "Name"
         },
-        "search": "Search..."
+        "search": "Search...",
+        "language": "Language",
+        "login": "Login"
     },
     "sidenav": {
         "favorites": "Favorites",

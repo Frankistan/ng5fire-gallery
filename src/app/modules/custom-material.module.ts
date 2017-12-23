@@ -17,9 +17,6 @@ import {
     MatSelectModule,
 } from '@angular/material';
 
-import { PlatformModule } from '@angular/cdk/platform';
-import { ObserversModule } from '@angular/cdk/observers';
-
 const MaterialModule = [
     MatButtonModule,
     MatInputModule,
@@ -40,9 +37,7 @@ const MaterialModule = [
 
 @NgModule({
     exports: [
-        MaterialModule,
-        PlatformModule,
-        ObserversModule
+        MaterialModule
     ],
 })
 export class CustomMaterialModule { }

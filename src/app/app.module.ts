@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvatarModule } from "ng2-avatar";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 import { CustomCovalentModule } from './modules/custom-covalent.module';
 import { CustomFirebaseModule } from './modules/custom-firebase.module';
 import { CustomMaterialModule } from './modules/custom-material.module';
@@ -13,24 +12,13 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 import { LazyLoadImagesModule } from 'ngx-lazy-load-images';
 import { MomentModule } from 'angular2-moment';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
+import { NgModule } from '@angular/core';
 import { OrderModule } from 'ngx-order-pipe';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RoutingModule } from './modules/routing.module';
 import { ScrollTrackerModule } from '@nicky-lenaers/ngx-scroll-tracker';
+
 import { AppComponent } from './app.component';
-
-import { AutofocusDirective } from './shared/directives/autofocus.directive';
-import { AuthGuard } from './guards/auth.guard';
-import { AuthService } from './shared/services/auth.service';
-import { CoreService } from './shared/services/core.service';
-import { ImageService } from './shared/services/image.service';
-import { LocationService } from './shared/services/location.service';
-import { LoggedInGuard } from './guards/logged-in.guard';
-import { SettingsService } from './shared/services/settings.service';
-import { SnackbarService } from './shared/services/snackbar.service';
-import { UploadImageService } from './shared/services/upload-image.service';
-import { UserService } from './shared/services/user.service';
-
 import { EmptyGalleryComponent } from './gallery/empty-gallery/empty-gallery.component';
 import { FabScrollToTopComponent } from './fabs/scroll-to-top-fab.component';
 import { FabUploadImagesComponent } from './fabs/upload-images-fab.component';
@@ -51,7 +39,23 @@ import { ProfileInfoComponent } from './user/profile-info/profile-info.component
 import { SettingsComponent } from './settings/settings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
+
+import { AuthService } from './shared/services/auth.service';
+import { CoreService } from './shared/services/core.service';
+import { ImageService } from './shared/services/image.service';
+import { LocationService } from './shared/services/location.service';
+import { SettingsService } from './shared/services/settings.service';
+import { SnackbarService } from './shared/services/snackbar.service';
+import { UploadImageService } from './shared/services/upload-image.service';
+import { UserService } from './shared/services/user.service';
+
+import { AuthGuard } from './guards/auth.guard';
 import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
+import { LoggedInGuard } from './guards/logged-in.guard';
+
+import { AutofocusDirective } from './shared/directives/autofocus.directive';
+
+
 
 @NgModule({
     declarations: [
@@ -83,9 +87,9 @@ import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
         WelcomeComponent
     ],
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
         AvatarModule,
+        BrowserAnimationsModule,
+        BrowserModule,
         CustomCovalentModule,
         CustomFirebaseModule,
         CustomMaterialModule,
@@ -104,15 +108,15 @@ import { ExitEditProfileGuard } from './guards/exit-edit-profile.guard';
         ScrollTrackerModule.forRoot(),
     ],
     entryComponents: [
-        UploadAvatarDialog,
         DeleteImageDialog,
-        DiscardChangesDialog
+        DiscardChangesDialog,
+        UploadAvatarDialog,
     ],
     providers: [
         AuthGuard,
         AuthService,
-        ExitEditProfileGuard,
         CoreService,
+        ExitEditProfileGuard,
         ImageService,
         LocationService,
         LoggedInGuard,

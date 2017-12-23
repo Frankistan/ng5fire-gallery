@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit{
     }
 
     openSearch() {
+        this.sidenav.close();
         this.isSearching = true;
         this.coreSrv.isSearching.next(this.isSearching);
     }

@@ -1,4 +1,7 @@
-<button mat-icon-button [matMenuTriggerFor]="langMenu">
+<button fxHide.xs="true" mat-button [matMenuTriggerFor]="langMenu">
+    {{ 'navbar.language' | translate }}
+</button>
+<button fxHide.gt-xs="true" mat-icon-button [matMenuTriggerFor]="langMenu">
     <mat-icon>language</mat-icon>
 </button>
 <mat-menu #langMenu="matMenu">

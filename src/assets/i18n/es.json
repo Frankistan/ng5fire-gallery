@@ -74,7 +74,9 @@
             "date": "Fecha",
             "name": "Nombre"
         },
-        "search": "Buscar..."
+        "search": "Buscar...",
+        "language": "Idioma",
+        "login": "Inicia Sesión"
     },
     "sidenav": {
         "favorites": "Favoritas",
