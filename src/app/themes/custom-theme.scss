@@ -5,8 +5,12 @@
 // https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
 // https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
 // https://medium.com/covalent-ui/angular-material-2-theme-tutorial-2f7e6c344006
+// fuente: tipografia:
+// https://stackoverflow.com/questions/42133158/material2-how-to-override-the-roboto-font-in-material2s-components
 @import '~@angular/material/theming';
 @import './dark-theme';
+// $custom-typography: mat-typography-config( $font-family: '"Google Sans",Roboto');
+// @include mat-core($custom-typography);
 @include mat-core();
 $custom-primary: mat-palette($mat-teal, 500);
 $custom-accent: mat-palette($mat-lime);
