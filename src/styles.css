@@ -56,6 +56,12 @@ app-searchbar {
         width: 3.5rem !important;
         line-height: 3.5rem !important;
     }
+    mat-card .mat-list-item-content {
+        padding: 0 !important;
+    }
+    mat-card h3.mat-subheader {
+        padding: 1rem 0 !important;
+    }
 }
 
 .app-sidenav {
