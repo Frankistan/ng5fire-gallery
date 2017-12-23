@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CoreService } from '../shared/services/core.service';
+import { scaleIn } from './../animations/scale.animation';
 
 @Component({
     selector: 'fab-scroll-to-top',
     template: `
-    <button [ngStyle]="{'display': (coreSrv.isScrolling|async)=='down' ? 'block':'none'}" mat-fab class="mat-fab-bottom-right" (click)="scrollToTop()">
+    <button [@scaleIn] *ngIf="(coreSrv.isScrolling|async)=='down'"  mat-fab class="mat-fab-bottom-right" (click)="scrollToTop()">
         <mat-icon aria-label="subir imagen">arrow_upward</mat-icon>
     </button>
   `,
@@ -16,7 +17,8 @@ import { CoreService } from '../shared/services/core.service';
             left: auto !important;
             position: fixed !important;
         }
-    `]
+    `],
+    animations: [scaleIn]
 })
 export class FabScrollToTopComponent  {
     @Input() htmlElement;
@@ -24,6 +26,7 @@ export class FabScrollToTopComponent  {
     constructor(
         public coreSrv: CoreService,
     ) { }
+
     scrollToTop() {
         this.htmlElement.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }

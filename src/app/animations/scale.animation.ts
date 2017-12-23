@@ -23,3 +23,16 @@ export const scaleAnimation =
 //         ])
 //     ]),
 // ]);
+
+export const scaleIn =
+    trigger('scaleIn', [
+
+        transition(':enter', [
+
+            // styles at start of transition
+            style({ opacity: 0, transform: 'scale(0.4)' }),
+
+            // animation and styles at end of transition
+            animate('0.3s cubic-bezier(.35,0,.25,1)', style({ opacity: 1, transform: 'scale(1.0)' }))
+        ]),
+    ]);
