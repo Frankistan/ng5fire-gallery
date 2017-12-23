@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore, AngularFirestoreDocument } from "angularfire2/firestore";
+import { AngularFirestore } from "angularfire2/firestore";
 import { SnackbarService } from './snackbar.service';
+import { LocationService } from './location.service';
 import { UserService } from './user.service';
 import { Observable,BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user';
 import * as firebase from 'firebase/app';
-import { LocationService } from './location.service';
 
 @Injectable()
 export class AuthService {

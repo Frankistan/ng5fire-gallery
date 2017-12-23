@@ -8,11 +8,11 @@ import { UserService } from '../../shared/services/user.service';
 import { LocationService } from '../../shared/services/location.service';
 import { UploadImageService } from '../../shared/services/upload-image.service';
 import { PasswordValidator } from '../../validators/match-password';
+import { Subscription, Observable } from 'rxjs';
 import { Upload } from '../../models/upload';
 import { User } from '../../models/user';
-import { Subscription, Observable } from 'rxjs';
-import * as moment from 'moment';
 import { scaleAnimation } from '../../animations/scale.animation';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-profile-editor',
@@ -21,19 +21,16 @@ import { scaleAnimation } from '../../animations/scale.animation';
     animations: [scaleAnimation],
 })
 export class ProfileEditorComponent implements OnInit {
-    hide: boolean = true;
-    userInfo: User;
-    profileForm: FormGroup;
-    subscription: Subscription;
-    showFields: boolean = false;
     private changed: boolean = false;
     private saved: boolean = false;
     address$: Observable<string>;
-
-    upload: Upload = null;
-
+    hide: boolean = true;
     image: File = null;
-
+    profileForm: FormGroup;
+    showFields: boolean = false;
+    subscription: Subscription;
+    upload: Upload = null;
+    userInfo: User;
 
     constructor(
         private dialog: MatDialog,
@@ -41,8 +38,8 @@ export class ProfileEditorComponent implements OnInit {
         private uploadImageSrv: UploadImageService,
         private userService: UserService,
         public auth: AuthService,
-        private location: LocationService,
         public translate: TranslateService,
+        private location: LocationService,
     ) {
         auth.user.subscribe((user) => {
             this.userInfo = user;
@@ -57,12 +54,17 @@ export class ProfileEditorComponent implements OnInit {
                         validator: PasswordValidator.MatchPassword // your validation method
                     });
 
+
             }
+            let geo: any = user.location || {};
+            this.address$ = location.getAddress(geo);
             this.profileForm.valueChanges.subscribe(val => {
                 this.changed = true;
             });
 
         });
+
+
 
         moment.locale(translate.currentLang);
 
@@ -82,7 +84,7 @@ export class ProfileEditorComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.address$ = this.location.address$;
+        // this.address$ = this.address$;
     }
 
     private opendDiscardDlg(): Observable<boolean> {

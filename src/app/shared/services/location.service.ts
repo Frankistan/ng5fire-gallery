@@ -1,43 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { User } from '../../models/user';
-
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LocationService {
-    user: User;
-    address: Observable<any>;
 
     position: any = null;
-    address$: BehaviorSubject<string> = new BehaviorSubject("profile.location_not_available");
 
-    constructor(
-        private _http: HttpClient,
-        private afAuth: AngularFireAuth,
-        private afs: AngularFirestore,
-    ) {
-        this.afAuth.authState.
-            switchMap((user) => {
-                if (!user) return Observable.of(null);
-                return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-            }).subscribe(user => {
-
-                if (!this.user) {
-                    this.address$.next('empty');
-                }
-
-                this._http
-                    .get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${user.location.lat},${user.location.lng}&sensor=false`)
-                    .map(res => {
-                        if (!res) return 'empty';
-                        let data: any = res;
-                        return data.results[1].formatted_address;
-                    }).subscribe(address => this.address$.next(address));
-            })
-    }
+    constructor(private _http: HttpClient) { }
 
     getLocation() {
         if (window.navigator && window.navigator.geolocation) {
@@ -65,4 +35,22 @@ export class LocationService {
             );
         };
     }
+
+    getAddress(position: any = {}) {
+        if (!position) {
+            return Observable.of('empty');
+        }
+
+        let url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.lat},${position.lng}&sensor=false`;
+
+        return this._http
+            .get(url)
+            .map(res => {
+                if (!res) return 'empty';
+                let data: any = res;
+                return data.results[1].formatted_address;
+            });
+    }
 }
+
+
