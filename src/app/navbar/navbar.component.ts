@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { CoreService } from '../shared/services/core.service';
 import { AuthService } from '../shared/services/auth.service';
@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
     @Input('sidenav') sidenav: MatSidenav;
 
     title: BehaviorSubject<string> = new BehaviorSubject('title.app');
@@ -24,6 +24,12 @@ export class NavbarComponent {
         this.coreSrv.currentPath.subscribe((path) => {
             this.displaySearchBtn = path === "images";
         });
+    }
+
+    ngOnInit() {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        this.title = this.coreSrv.title;
     }
 
     openSearch() {

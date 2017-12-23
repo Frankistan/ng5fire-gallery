@@ -50,10 +50,13 @@ export class CoreService {
             })
             .filter((route) => route.outlet === 'primary')
             .subscribe((event: ActivatedRoute) => {
-                let key = 'title.' + event.snapshot.data.title;
+                let key:any = 'title.' + event.snapshot.data.title;
+                let path:any = event.snapshot.routeConfig.path;
 
                 this.title.next(key);
-                this.currentPath.next(event.snapshot.routeConfig.path);
+                if (path !== "images" || path !== "favorites") this.isSearching.next(false);
+
+                this.currentPath.next(path);
 
                 this.translate.get(key).subscribe((res: string) => {
                     this.titleTranslationKey = key;

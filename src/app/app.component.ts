@@ -37,6 +37,7 @@ export class AppComponent {
         translate.setDefaultLang('es');
 
         this.settingsService.loadSettings.subscribe((settings) => {
+
             this.coreSrv.darkTheme.next(settings.isDark);
             this.coreSrv.language.next(settings.language);
             this.title = this.coreSrv.title;
