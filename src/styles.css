@@ -62,6 +62,12 @@ app-searchbar {
     mat-card h3.mat-subheader {
         padding: 1rem 0 !important;
     }
+    .custom-dialog mat-dialog-container {
+        padding: 1rem !important;
+    }
+    .custom-dialog.cdk-overlay-pane {
+        max-width: calc(100vw - 1rem) !important;
+    }
 }
 
 .app-sidenav {

@@ -24,17 +24,14 @@ export class AuthService {
         private userService: UserService,
         private location: LocationService
     ) {
-        this._user$ = this.afAuth.authState.
-            switchMap((user) => {
-
+        this._user$ = this.afAuth.authState
+            .switchMap((user) => {
                 if (user) {
-                    this.lastLoginAt.next(user.metadata.lastSignInTime);
-
                     this.socialLogin = Observable.of(user.providerData[0].providerId != "password");
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
                 } else {
                     this.socialLogin = Observable.of(false);
-                    return Observable.of(null);
+                    return Observable.empty();
                 }
             });
 
@@ -46,11 +43,17 @@ export class AuthService {
 
     login(email: string, password: string): Promise<any> {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-            .then((user) => {
+            .then((firebaseUser:firebase.User) => {
+
                 const data: User = {
-                    uid: user.uid,
-                    location: this.location.position
+                    uid: firebaseUser.uid,
+                    email: firebaseUser.email,
+                    displayName: firebaseUser.displayName,
+                    photoURL: firebaseUser.photoURL,
+                    location: this.location.position,
+                    lastLoginAt: firebaseUser.metadata.lastSignInTime
                 };
+
                 this.userService.update(data);
                 this.router.navigate(['/images']);
             })
@@ -64,8 +67,10 @@ export class AuthService {
                 const data: User = {
                     uid: firebaseUser.uid,
                     email: firebaseUser.email,
-                    displayName: user.name,
-                    photoURL: user.photoURL
+                    displayName: firebaseUser.displayName,
+                    photoURL: firebaseUser.photoURL,
+                    location: this.location.position,
+                    lastLoginAt: firebaseUser.metadata.lastSignInTime
                 };
                 this.userService.create(data);
             }));
@@ -109,7 +114,9 @@ export class AuthService {
                     uid: credential.user.uid,
                     email: credential.additionalUserInfo.profile.email || "",
                     displayName: credential.user.displayName,
-                    photoURL: credential.user.photoURL
+                    photoURL: credential.user.photoURL,
+                    location: this.location.position,
+                    lastLoginAt: credential.metadata.lastSignInTime
                 };
 
                 this.userService.update(data);

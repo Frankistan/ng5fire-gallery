@@ -32,12 +32,10 @@ export class UserService {
                     // this.afAuth.auth.currentUser.refreshToken;
                     this.userRef.set(user)
                         .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
-                        .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
+                        .catch(error => this.errorHandler(error.code));
 
                 })
-                .catch(error => {
-                    this.snackBar.open('toast.firebase.' + error.code, 'toast.close');
-                });
+                .catch(error => this.errorHandler(error.code));
         } else {
             this.afAuth.auth.currentUser.updateProfile({
                 displayName: user.displayName,
@@ -46,7 +44,7 @@ export class UserService {
 
             this.userRef.update(user)
                 .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
-                .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
+                .catch(error => this.errorHandler(error.code));
         }
     }
 
@@ -61,6 +59,10 @@ export class UserService {
 
         this.userRef.set(user)
             .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
-            .catch(error => { this.snackBar.open('toast.firebase.' + error.code, 'toast.close'); });
+            .catch(error => this.errorHandler(error.code));
+    }
+
+    private errorHandler(error: any) {
+        this.snackBar.open('toast.firebase.' + error, 'toast.close');
     }
 }

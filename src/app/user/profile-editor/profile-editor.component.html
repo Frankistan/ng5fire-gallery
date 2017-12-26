@@ -13,7 +13,7 @@
                 <mat-card-subtitle class="lastLogin">
                     <mat-icon>access_time</mat-icon>
                     <span>{{ 'profile.lastLogin' | translate }} : </span>
-                    <time>{{ auth.lastLoginAt|async | amTimeAgo }}</time>
+                    <time>{{ userInfo.lastLoginAt | amTimeAgo }}</time>
                 </mat-card-subtitle>
                 <mat-card-subtitle class="lastLogin" *ngIf="address$ |async; let address">
                     <mat-icon>{{ address=='empty' ? 'location_off' : 'location_on'}}</mat-icon>
@@ -72,7 +72,7 @@
                 <mat-card-subtitle class="lastLogin">
                     <mat-icon>access_time</mat-icon>
                     <span>{{ 'profile.lastLogin' | translate }} : </span>
-                    <time>{{ auth.lastLoginAt|async | amTimeAgo }}</time>
+                    <time>{{ userInfo.lastLoginAt | amTimeAgo }}</time>
                 </mat-card-subtitle>
             </mat-card-header>
 

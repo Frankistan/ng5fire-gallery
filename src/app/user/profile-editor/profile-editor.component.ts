@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, Renderer2, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, Renderer2, AfterContentInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
@@ -13,6 +13,7 @@ import { Upload } from '../../models/upload';
 import { User } from '../../models/user';
 import { scaleAnimation } from '../../animations/scale.animation';
 import * as moment from 'moment';
+import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 
 @Component({
     selector: 'app-profile-editor',
@@ -20,7 +21,7 @@ import * as moment from 'moment';
     styleUrls: ['./profile-editor.component.css'],
     animations: [scaleAnimation],
 })
-export class ProfileEditorComponent implements OnInit {
+export class ProfileEditorComponent  {
     private changed: boolean = false;
     private saved: boolean = false;
     address$: Observable<string>;
@@ -41,7 +42,7 @@ export class ProfileEditorComponent implements OnInit {
         public translate: TranslateService,
         private location: LocationService,
     ) {
-        auth.user.subscribe((user) => {
+        auth.user.subscribe(user => {
             this.userInfo = user;
             if (user && user != undefined) {
                 this.profileForm = this.formBuilder.group({
@@ -53,18 +54,13 @@ export class ProfileEditorComponent implements OnInit {
                 }, {
                         validator: PasswordValidator.MatchPassword // your validation method
                     });
-
-
             }
-            let geo: any = user.location || {};
-            this.address$ = location.getAddress(geo);
+            this.address$ = location.getAddress();
+
             this.profileForm.valueChanges.subscribe(val => {
                 this.changed = true;
             });
-
         });
-
-
 
         moment.locale(translate.currentLang);
 
@@ -81,10 +77,6 @@ export class ProfileEditorComponent implements OnInit {
         } else {
             return true;
         }
-    }
-
-    ngOnInit() {
-        // this.address$ = this.address$;
     }
 
     private opendDiscardDlg(): Observable<boolean> {
@@ -124,7 +116,7 @@ export class ProfileEditorComponent implements OnInit {
 
     openUploadAvatarDlg(): void {
         let dialogRef = this.dialog.open(UploadAvatarDialog, {
-            // width: '250px',
+            panelClass: 'custom-dialog',
             data: { file: this.image }
         });
 
@@ -170,6 +162,7 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit {
 
     constructor(
         private renderer: Renderer2,
+        private media: ObservableMedia,
         public dialogRef: MatDialogRef<UploadAvatarDialog>,
         @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -178,8 +171,6 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit {
 
     ngOnInit() {
         // Pista: https://stackoverflow.com/questions/39876932/angular-2-image-uploader-with-cropper
-        this.data.animal = "cats";
-        this.data.name = "Frantxu";
         var that = this;
         this.cropper.onCrop.subscribe(event => {
 
@@ -200,9 +191,6 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit {
 
         this.cropperSettings.croppedWidth = 200;
         this.cropperSettings.croppedHeight = 200;
-
-        this.cropperSettings.canvasWidth = 300;
-        this.cropperSettings.canvasHeight = 220;
 
         this.cropperSettings.minWidth = 100;
         this.cropperSettings.minHeight = 100;
@@ -257,7 +245,6 @@ export class UploadAvatarDialog implements OnInit, AfterContentInit {
         canvas.width = content.clientWidth;
         // this.cropperSettings.canvasHeight = 400;
     }
-
 }
 
 
