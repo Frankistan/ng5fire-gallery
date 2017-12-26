@@ -60,7 +60,7 @@
 </ng-template>
 
 <ng-template #authenticated>
-    <div *ngIf="auth.user | async as user">
+    <div *ngIf="auth.user | async;let user">
         <div fxLayoutAlign="center">
             <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="65" fxFlex.gt-sm="40">
                 <mat-card-header>

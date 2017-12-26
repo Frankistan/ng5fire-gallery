@@ -21,7 +21,7 @@ export class SignupComponent {
         private snackBar: SnackbarService
     ) {
         this.signupForm = this.formBuilder.group({
-            name: ['fran', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+            name: ['test', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
             email: ['test@example.com', [Validators.required, Validators.email]],
             photoURL: ['', []],
             password: ['123456', Validators.required],

@@ -36,8 +36,6 @@ export class LocationService {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    console.log('lcationSrv: ', this.position);
-
                 },
                 error => {
                     switch (error.code) {

@@ -31,7 +31,7 @@ export class AuthService {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
                 } else {
                     this.socialLogin = Observable.of(false);
-                    return Observable.empty();
+                    return Observable.of(null);
                 }
             });
 
@@ -109,17 +109,18 @@ export class AuthService {
     private oAuthLogin(provider) {
         return this.afAuth.auth.signInWithPopup(provider)
             .then((credential) => {
+                let user = credential.user;
 
                 const data: User = {
-                    uid: credential.user.uid,
+                    uid: user.uid,
                     email: credential.additionalUserInfo.profile.email || "",
-                    displayName: credential.user.displayName,
-                    photoURL: credential.user.photoURL,
+                    displayName: user.displayName,
+                    photoURL: user.photoURL,
                     location: this.location.position,
-                    lastLoginAt: credential.metadata.lastSignInTime
+                    lastLoginAt: user.metadata.lastSignInTime
                 };
 
-                this.userService.update(data);
+                this.userService.create(data);
             })
     }
 

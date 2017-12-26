@@ -44,6 +44,7 @@ export class ProfileEditorComponent  {
     ) {
         auth.user.subscribe(user => {
             this.userInfo = user;
+
             if (user && user != undefined) {
                 this.profileForm = this.formBuilder.group({
                     name: [this.userInfo.displayName, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -57,9 +58,11 @@ export class ProfileEditorComponent  {
             }
             this.address$ = location.getAddress();
 
-            this.profileForm.valueChanges.subscribe(val => {
-                this.changed = true;
-            });
+            if(this.profileForm) {
+                this.profileForm.valueChanges.subscribe(val => {
+                    this.changed = true;
+                });
+            }
         });
 
         moment.locale(translate.currentLang);

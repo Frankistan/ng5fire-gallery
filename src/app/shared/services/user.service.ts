@@ -37,6 +37,7 @@ export class UserService {
                 })
                 .catch(error => this.errorHandler(error.code));
         } else {
+
             this.afAuth.auth.currentUser.updateProfile({
                 displayName: user.displayName,
                 photoURL: user.photoURL
