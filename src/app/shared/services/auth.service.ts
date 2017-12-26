@@ -64,10 +64,11 @@ export class AuthService {
     signup(user: any = {}) {
         return Observable.fromPromise(this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
             .then((firebaseUser) => {
+
                 const data: User = {
                     uid: firebaseUser.uid,
                     email: firebaseUser.email,
-                    displayName: firebaseUser.displayName,
+                    displayName: user.name,
                     photoURL: firebaseUser.photoURL,
                     location: this.location.position,
                     lastLoginAt: firebaseUser.metadata.lastSignInTime
@@ -113,7 +114,7 @@ export class AuthService {
 
                 const data: User = {
                     uid: user.uid,
-                    email: credential.additionalUserInfo.profile.email || "",
+                    email: credential.additionalUserInfo.profile.email || user.email || "",
                     displayName: user.displayName,
                     photoURL: user.photoURL,
                     location: this.location.position,

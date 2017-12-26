@@ -10,11 +10,11 @@ export const environment = {
         clientKey: "6Lc04xQUAAAAACQ7vQYUfQqF-SI16BD9g3rtt7bt"
     },
     firebase: {
-        apiKey: "AIzaSyB-qEzUod8TIqPjFBamLpY248cKqtDsjUA",
-        authDomain: "ng5fire-gallery.firebaseapp.com",
-        databaseURL: "https://ng5fire-gallery.firebaseio.com",
-        projectId: "ng5fire-gallery",
-        storageBucket: "ng5fire-gallery.appspot.com",
-        messagingSenderId: "967932819471"
+        apiKey: "AIzaSyByMofnTizQjeTiXcj7qetQYFInIPen8EU",
+        authDomain: "ng5firegallery.firebaseapp.com",
+        databaseURL: "https://ng5firegallery.firebaseio.com",
+        projectId: "ng5firegallery",
+        storageBucket: "ng5firegallery.appspot.com",
+        messagingSenderId: "37945654226"
     }
 }

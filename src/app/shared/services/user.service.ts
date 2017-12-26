@@ -58,9 +58,7 @@ export class UserService {
             photoURL: user.photoURL
         });
 
-        this.userRef.set(user)
-            .then(success => { this.snackBar.open('toast.profile', 'toast.close'); })
-            .catch(error => this.errorHandler(error.code));
+        this.userRef.set(user);
     }
 
     private errorHandler(error: any) {

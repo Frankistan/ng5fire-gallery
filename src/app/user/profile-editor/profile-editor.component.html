@@ -65,9 +65,11 @@
     </ng-template>
     <ng-template #social>
         <mat-card fxLayout="column" fxFlex="100" fxFlex.sm="80" fxFlex.gt-sm="40" *ngIf="auth.user | async; let user;">
-            <mat-card-header>
-                <div mat-card-avatar class="card-header-image" [ngStyle]="{'background-image': 'url(' + user.photoURL + ')'}"></div>
-                <mat-card-title>{{ user.displayName }}</mat-card-title>
+            <mat-card-header fxLayout="row" fxLayout.xs="column">
+                <div fxFlexAlign.xs="center" mat-card-avatar [@scaleAnimation] class="card-header-image" [ngStyle]="{'background-image': 'url(' + user.photoURL + ')'}">
+                    <avatar size="162" matListAvatar *ngIf="!user.photoURL" [name]="user.displayName.split(' ', 2).join(' ')" [displayType]="'circle'"></avatar>
+                </div>
+                <mat-card-title [ngStyle.xs]="{'margin-top.rem': 1, 'text-align': 'center'}" class="truncate">{{ user.displayName }}</mat-card-title>
                 <mat-card-subtitle class="truncate">{{ user.email }}</mat-card-subtitle>
                 <mat-card-subtitle class="lastLogin">
                     <mat-icon>access_time</mat-icon>
