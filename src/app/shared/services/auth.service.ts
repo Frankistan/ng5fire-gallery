@@ -51,10 +51,11 @@ export class AuthService {
                     displayName: firebaseUser.displayName,
                     photoURL: firebaseUser.photoURL,
                     location: this.location.position,
-                    lastLoginAt: firebaseUser.metadata.lastSignInTime
+                    lastLoginAt: firebaseUser.metadata.lastSignInTime,
+                    profileURL: ""
                 };
 
-                this.userService.update(data);
+                this.userService.create(data);
                 this.router.navigate(['/images']);
             })
             .catch(error => this.errorHandler(error.code));
@@ -71,7 +72,8 @@ export class AuthService {
                     displayName: user.name,
                     photoURL: firebaseUser.photoURL,
                     location: this.location.position,
-                    lastLoginAt: firebaseUser.metadata.lastSignInTime
+                    lastLoginAt: firebaseUser.metadata.lastSignInTime,
+                    profileURL: ""
                 };
                 this.userService.create(data);
             }));
@@ -118,9 +120,9 @@ export class AuthService {
                     displayName: user.displayName,
                     photoURL: user.photoURL,
                     location: this.location.position,
-                    lastLoginAt: user.metadata.lastSignInTime
+                    lastLoginAt: user.metadata.lastSignInTime,
+                    profileURL: credential.additionalUserInfo.profile.html_url || credential.additionalUserInfo.profile.link
                 };
-
                 this.userService.create(data);
             })
     }

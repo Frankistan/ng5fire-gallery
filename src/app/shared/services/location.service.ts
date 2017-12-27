@@ -28,7 +28,7 @@ export class LocationService {
             });
     }
 
-    getLocation() {
+    getLocation():any {
         if (window.navigator && window.navigator.geolocation) {
             window.navigator.geolocation.getCurrentPosition(
                 position => {
@@ -36,20 +36,22 @@ export class LocationService {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
+
+                    return this.position;
                 },
                 error => {
-                    switch (error.code) {
-                        case 1:
-                            console.log('Permission Denied');
-                            break;
-                        case 2:
-                            console.log('Position Unavailable');
-                            break;
-                        case 3:
-                            console.log('Timeout');
-                            break;
-                    }
-                    this.position = null;
+                    // switch (error.code) {
+                    //     case 1:
+                    //         console.log('Permission Denied');
+                    //         break;
+                    //     case 2:
+                    //         console.log('Position Unavailable');
+                    //         break;
+                    //     case 3:
+                    //         console.log('Timeout');
+                    //         break;
+                    // }
+                    return this.position = null;
                 }
             );
         };
@@ -70,6 +72,26 @@ export class LocationService {
                 let ad = data.results[1];
                 if (data.results[1]) return ad.formatted_address;
             });
+    }
+
+    getPosition = () => {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition((position) => {
+                resolve(position.coords);
+            }, (err) => {
+                reject(err);
+            });
+        });
+    }
+
+    async getCurrentLocation(): Promise<any> {
+        let position:any = await this.getPosition();
+        this.position = {
+            lat: position.latitude,
+            lng: position.longitude
+        };
+
+        return position;
     }
 }
 

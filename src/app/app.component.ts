@@ -43,7 +43,7 @@ export class AppComponent {
             this.title = this.coreSrv.title;
         });
 
-        location.getLocation();
+        location.getCurrentLocation();
     }
 
     scrollHandler(eventData: ScrollTrackerEventData) {

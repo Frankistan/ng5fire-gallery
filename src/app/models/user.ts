@@ -5,5 +5,6 @@ export interface User {
     displayName?: string,
     settings?:string,
     location?:{},
-    lastLoginAt?: any
+    lastLoginAt?: any,
+    profileURL?: string
 }
