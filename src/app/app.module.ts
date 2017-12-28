@@ -26,19 +26,19 @@ import { ImageDetailComponent, DeleteImageDialog } from './gallery/image-detail/
 import { ImageElementComponent } from './gallery/image-list/image-element/image-element.component';
 import { ImageListComponent } from './gallery/image-list/image-list.component';
 import { ImageUploadComponent } from './gallery/image-upload/image-upload.component';
+import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileEditorComponent, UploadAvatarDialog, DiscardChangesDialog } from './user/profile-editor/profile-editor.component';
+import { ProfileInfoComponent } from './user/profile-info/profile-info.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
+import { SettingsComponent } from './settings/settings.component';
 import { SidenavListComponent } from './sidenav/sidenav-list/sidenav-list.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SortByBtnComponent } from './navbar/sort-by-btn/sort-by-btn.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ProfileEditorComponent, UploadAvatarDialog, DiscardChangesDialog } from './user/profile-editor/profile-editor.component';
-import { ProfileInfoComponent } from './user/profile-info/profile-info.component';
-import { SettingsComponent } from './settings/settings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { LangBtnComponent } from './navbar/lang-btn/lang-btn.component';
 
 import { AuthService } from './shared/services/auth.service';
 import { CoreService } from './shared/services/core.service';
@@ -78,7 +78,6 @@ import { AutofocusDirective } from './shared/directives/autofocus.directive';
         ResetPasswordComponent,
         SearchbarComponent,
         SettingsComponent,
-        SidenavListComponent,
         SidenavListComponent,
         SignupComponent,
         SortByBtnComponent,

@@ -3,7 +3,8 @@ import { UploadImageService } from '../../shared/services/upload-image.service';
 import { Observable } from 'rxjs';
 import { Image } from '../../models/image';
 import { Upload } from '../../models/upload';
-import * as _ from 'lodash';
+// import * as _ from 'lodash';
+import { range,each } from 'lodash';
 
 @Component({
     selector: 'app-image-upload',
@@ -32,9 +33,9 @@ export class ImageUploadComponent implements OnInit {
     pushFiles() {
         if (this.files instanceof FileList) {
             const filesToUpload = this.files;
-            const filesIdx = _.range(filesToUpload.length);
+            const filesIdx = range(filesToUpload.length);
             this.multiple = true;
-            _.each(filesIdx, index => {
+            each(filesIdx, index => {
                 this.upload = new Upload(filesToUpload[index]);
                 this.uploadImageService.uploadFile(this.upload);
             });

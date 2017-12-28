@@ -4,7 +4,8 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { SnackbarService } from './snackbar.service';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../../models/user';
-import _ from 'lodash';
+// import _ from 'lodash';
+import { merge } from 'lodash';
 
 @Injectable()
 export class SettingsService {
@@ -35,9 +36,9 @@ export class SettingsService {
 
         let localSettings = JSON.parse(localStorage.getItem('settings')) || {};
 
-        let userSettings = _.merge({}, localSettings, databaseSettings);
+        let userSettings = merge({}, localSettings, databaseSettings);
 
-        let settings = _.merge({}, defaults, userSettings);
+        let settings = merge({}, defaults, userSettings);
 
         localStorage.setItem('settings', JSON.stringify(settings));
 
@@ -47,7 +48,7 @@ export class SettingsService {
     saveSettings(newSettings: any) {
         let localSettings = JSON.parse(localStorage.getItem('settings')) || {};
 
-        let settings = _.merge({}, localSettings, newSettings);
+        let settings = merge({}, localSettings, newSettings);
 
         localStorage.setItem('settings', JSON.stringify(settings));
 

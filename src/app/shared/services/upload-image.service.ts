@@ -7,7 +7,6 @@ import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { Upload } from '../../models/upload';
-import * as _ from 'lodash';
 import * as firebase from 'firebase';
 
 @Injectable()

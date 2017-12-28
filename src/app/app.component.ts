@@ -1,15 +1,15 @@
-import { LocationService } from './shared/services/location.service';
 import { Component,  Inject, Output, ElementRef, ViewChild } from '@angular/core';
-import { ScrollTrackerEventData } from '@nicky-lenaers/ngx-scroll-tracker';
-import { CoreService } from './shared/services/core.service';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './shared/services/auth.service';
-import { DefaultLangChangeEvent } from '@ngx-translate/core';
-import { SettingsService } from './shared/services/settings.service';
+import { CoreService } from './shared/services/core.service';
+import { LocationService } from './shared/services/location.service';
 import { RecaptchaLoaderService } from 'ng-recaptcha';
+import { SettingsService } from './shared/services/settings.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DefaultLangChangeEvent } from '@ngx-translate/core';
+import { MatSidenav } from '@angular/material';
+import { ScrollTrackerEventData } from '@nicky-lenaers/ngx-scroll-tracker';
 import { BehaviorSubject } from 'rxjs';
 import { routerTransition } from './animations/router-transition';
-import { MatSidenav } from '@angular/material';
 
 @Component({
     selector: 'app-root',
@@ -20,7 +20,6 @@ import { MatSidenav } from '@angular/material';
 export class AppComponent {
 
     @ViewChild('sidenav') sidenav: MatSidenav ;
-    @Output() openedChange;
     title: BehaviorSubject<string> = new BehaviorSubject('title.app');
     scrollPosition: number = 0;
     scrollableElement = null;
