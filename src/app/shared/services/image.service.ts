@@ -5,7 +5,7 @@ import { SnackbarService } from './snackbar.service';
 import { Image } from '../../models/image';
 import { Observable, BehaviorSubject } from 'rxjs';
 import * as firebase from 'firebase';
-import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class ImageService {

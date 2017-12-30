@@ -6,7 +6,7 @@ import { environment } from './environments/environment';
 
 import 'hammerjs';
 
-import { switchMap, map } from 'rxjs/operators';
+import './app/shared/rxjs-imports';
 
 declare global {
     interface Window { ng2recaptchaloaded: any; }
