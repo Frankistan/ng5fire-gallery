@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DefaultLangChangeEvent } from '@ngx-translate/core';
 import { MatSidenav } from '@angular/material';
 import { ScrollTrackerEventData } from '@nicky-lenaers/ngx-scroll-tracker';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { routerTransition } from './animations/router-transition';
 
 @Component({

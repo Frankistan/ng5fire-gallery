@@ -5,7 +5,8 @@ import { AngularFirestore } from "angularfire2/firestore";
 import { SnackbarService } from './snackbar.service';
 import { LocationService } from './location.service';
 import { UserService } from './user.service';
-import { Observable,BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
 import * as firebase from 'firebase/app';
 

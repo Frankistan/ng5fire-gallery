@@ -4,7 +4,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { SnackbarService } from './snackbar.service';
 import { ImageService } from './image.service';
 import { UserService } from './user.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user';
 import { Upload } from '../../models/upload';
 import * as firebase from 'firebase';

@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { Observable, BehaviorSubject, Subscription} from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Image } from '../../models/image';
 import { CoreService } from '../../shared/services/core.service';
 import { ImageService } from '../../shared/services/image.service';

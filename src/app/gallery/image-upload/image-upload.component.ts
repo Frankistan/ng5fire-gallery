@@ -1,6 +1,6 @@
 import { Component, OnInit, Renderer, ViewChild } from '@angular/core';
 import { UploadImageService } from '../../shared/services/upload-image.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Image } from '../../models/image';
 import { Upload } from '../../models/upload';
 // import * as _ from 'lodash';

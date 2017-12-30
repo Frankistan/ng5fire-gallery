@@ -1,7 +1,8 @@
 //our root app component
 import { Component, NgModule, Injectable, Inject, NgZone } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import { RecaptchaModule, RecaptchaLoaderService } from 'ng-recaptcha';
 
 @Injectable()

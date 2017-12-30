@@ -3,7 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SnackbarService } from './snackbar.service';
 import { Image } from '../../models/image';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
 
 
